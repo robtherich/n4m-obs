@@ -1,0 +1,11 @@
+{
+  "name": "n4m-obs",
+  "version": "1.0.0",
+  "description": "Control OBS via Node For Max",
+  "main": "obsctl.js",
+  "author": "Rob Ramirez",
+  "license": "ISC",
+  "dependencies": {
+    "obs-websocket-js": "^4.0.2"
+  }
+}
