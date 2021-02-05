@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 902.0, 430.0 ],
+		"rect" : [ 34.0, 87.0, 902.0, 494.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,56 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-23",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 99.0, 17.0, 391.0, 20.0 ],
+					"text" : "First connect to OBS, then use the messages below to control recording"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-18",
+					"maxclass" : "playbar",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "int" ],
+					"patching_rect" : [ 696.0, 198.0, 185.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 13.0, 461.0, 579.0, 20.0 ],
+					"text" : "If pause and resume functionality needed, must also adjust Recording Quality so it is not \"Same as Stream\""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 13.0, 439.0, 523.0, 20.0 ],
+					"text" : "Probably will want to adjust OBS Settings -> Output -> Recording -> Recording Format -> to mp4"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 238.0, 28.0, 49.0, 22.0 ],
+					"patching_rect" : [ 191.0, 52.0, 49.0, 22.0 ],
 					"text" : "resume"
 				}
 
@@ -57,7 +101,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 28.0, 41.0, 22.0 ],
+					"patching_rect" : [ 148.0, 52.0, 41.0, 22.0 ],
 					"text" : "pause"
 				}
 
@@ -69,7 +113,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 12.0, 374.574112734864286, 864.0, 29.0 ],
+					"patching_rect" : [ 9.0, 398.574112734864286, 864.0, 29.0 ],
 					"text" : "requires OBS with the obs-websocket plugin installed - https://github.com/Palakis/obs-websocket"
 				}
 
@@ -84,7 +128,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 648.5, 307.0, 80.0, 35.0 ]
+					"patching_rect" : [ 645.5, 331.0, 80.0, 35.0 ]
 				}
 
 			}
@@ -98,7 +142,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 490.5, 204.5, 80.0, 35.0 ]
+					"patching_rect" : [ 487.5, 228.5, 80.0, 35.0 ]
 				}
 
 			}
@@ -109,7 +153,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_gl_texture", "" ],
-					"patching_rect" : [ 475.0, 336.0, 73.0, 22.0 ],
+					"patching_rect" : [ 472.0, 360.0, 73.0, 22.0 ],
 					"text" : "jit.gl.camera"
 				}
 
@@ -118,11 +162,10 @@
 				"box" : 				{
 					"id" : "obj-56",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 475.0, 307.0, 170.0, 22.0 ],
-					"text" : "jit.gl.syphonserver @layer 999"
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 472.0, 331.0, 164.0, 22.0 ],
+					"text" : "jit.gl.spoutsender @layer 999"
 				}
 
 			}
@@ -135,7 +178,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 802.0, 250.0, 50.0, 22.0 ]
+					"patching_rect" : [ 799.0, 274.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -580,7 +623,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 802.0, 277.0, 57.0, 22.0 ],
+					"patching_rect" : [ 799.0, 301.0, 57.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -595,15 +638,14 @@
 , 			{
 				"box" : 				{
 					"bubble" : 1,
-					"bubblepoint" : 0.0,
-					"bubbleside" : 2,
 					"bubbleusescolors" : 1,
 					"id" : "obj-51",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 319.0, 42.0, 336.0, 39.0 ],
-					"text" : "adjust the folder arg to wherever OBS is recording your files"
+					"patching_rect" : [ 426.0, 99.5, 281.0, 37.0 ],
+					"text" : "adjust the folder arg to wherever OBS is recording your files, default on Win is ~/Videos"
 				}
 
 			}
@@ -614,7 +656,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "jit_gl_texture", "bang", "" ],
-					"patching_rect" : [ 475.0, 277.0, 320.0, 22.0 ],
+					"patching_rect" : [ 472.0, 301.0, 320.0, 22.0 ],
 					"text" : "jit.world w @enable 1 @output_texture 1 @dim 1920 1080"
 				}
 
@@ -626,7 +668,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 475.0, 137.0, 111.0, 22.0 ],
+					"patching_rect" : [ 472.0, 161.0, 111.0, 22.0 ],
 					"text" : "prepend asyncread"
 				}
 
@@ -638,7 +680,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "jit_gl_texture", "" ],
-					"patching_rect" : [ 475.0, 174.0, 216.0, 22.0 ],
+					"patching_rect" : [ 472.0, 198.0, 216.0, 22.0 ],
 					"text" : "jit.movie @output_texture 1 @unique 1"
 				}
 
@@ -650,8 +692,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 591.0, 137.0, 226.0, 22.0 ],
-					"text" : "~/Movies/2021-02-04_18-08-03.mp4"
+					"patching_rect" : [ 588.0, 161.0, 226.0, 22.0 ]
 				}
 
 			}
@@ -662,7 +703,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 314.0, 232.0, 54.0, 22.0 ],
+					"patching_rect" : [ 311.0, 256.0, 54.0, 22.0 ],
 					"text" : "deferlow"
 				}
 
@@ -674,7 +715,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "stop" ],
-					"patching_rect" : [ 285.0, 208.0, 48.0, 22.0 ],
+					"patching_rect" : [ 282.0, 232.0, 48.0, 22.0 ],
 					"text" : "t 0 stop"
 				}
 
@@ -687,7 +728,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 206.0, 282.0, 39.0, 39.0 ]
+					"patching_rect" : [ 203.0, 306.0, 39.0, 39.0 ]
 				}
 
 			}
@@ -698,7 +739,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 206.0, 208.0, 22.0, 22.0 ],
+					"patching_rect" : [ 203.0, 232.0, 22.0, 22.0 ],
 					"text" : "t 1"
 				}
 
@@ -757,7 +798,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 270.5, 43.0, 229.0, 60.0 ],
-									"text" : "will check the contents of the Movies folder before and after recording, and output the new filename if found, basically a folder-watcher thingy"
+									"text" : "will check the contents of the Videos folder before and after recording, and output the new filename if found, basically a folder-watcher thingy"
 								}
 
 							}
@@ -768,8 +809,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 137.0, 587.0, 184.0, 22.0 ],
-									"text" : "combine ~/Movies/ s @triggers 1"
+									"patching_rect" : [ 137.0, 587.0, 182.0, 22.0 ],
+									"text" : "combine ~/Videos/ s @triggers 1"
 								}
 
 							}
@@ -1002,8 +1043,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "int" ],
-									"patching_rect" : [ 195.0, 266.0, 90.0, 22.0 ],
-									"text" : "folder ~/Movies"
+									"patching_rect" : [ 195.0, 266.0, 89.0, 22.0 ],
+									"text" : "folder ~/Videos"
 								}
 
 							}
@@ -1221,7 +1262,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 292.0, 83.0, 126.0, 22.0 ],
+					"patching_rect" : [ 289.0, 107.0, 126.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1240,7 +1281,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 155.5, 28.0, 31.0, 22.0 ],
+					"patching_rect" : [ 108.5, 52.0, 31.0, 22.0 ],
 					"text" : "stop"
 				}
 
@@ -1252,7 +1293,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 123.0, 28.0, 32.0, 22.0 ],
+					"patching_rect" : [ 76.0, 52.0, 32.0, 22.0 ],
 					"text" : "start"
 				}
 
@@ -1264,7 +1305,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 123.0, 83.0, 129.0, 22.0 ],
+					"patching_rect" : [ 76.0, 107.0, 129.0, 22.0 ],
 					"text" : "prepend set_recording"
 				}
 
@@ -1276,7 +1317,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 79.0, 282.0, 111.0, 22.0 ],
+					"patching_rect" : [ 76.0, 306.0, 111.0, 22.0 ],
 					"text" : "prepend set_scene"
 				}
 
@@ -1288,7 +1329,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 98.0, 208.0, 96.0, 22.0 ],
+					"patching_rect" : [ 95.0, 232.0, 96.0, 22.0 ],
 					"text" : "prepend append"
 				}
 
@@ -1300,7 +1341,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "clear" ],
-					"patching_rect" : [ 49.0, 208.0, 41.0, 22.0 ],
+					"patching_rect" : [ 46.0, 232.0, 41.0, 22.0 ],
 					"text" : "t clear"
 				}
 
@@ -1308,13 +1349,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-11",
-					"items" : [ "Desktop", ",", "Window", ",", "Syphon" ],
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 49.0, 250.0, 79.0, 22.0 ]
+					"patching_rect" : [ 46.0, 274.0, 79.0, 22.0 ]
 				}
 
 			}
@@ -1325,7 +1366,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 5,
 					"outlettype" : [ "", "", "", "", "" ],
-					"patching_rect" : [ 49.0, 174.0, 333.0, 22.0 ],
+					"patching_rect" : [ 46.0, 198.0, 333.0, 22.0 ],
 					"text" : "route scenelist scene start stop"
 				}
 
@@ -1337,7 +1378,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 49.0, 28.0, 51.0, 22.0 ],
+					"patching_rect" : [ 46.0, 17.0, 51.0, 22.0 ],
 					"text" : "connect"
 				}
 
@@ -1361,7 +1402,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 580.0, 674.0, 355.0 ],
+						"rect" : [ 0.0, 640.0, 674.0, 355.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1392,12 +1433,25 @@
 						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-7",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 219.5, 14.5, 155.0, 37.0 ],
+									"text" : "install necessary libs if running the first time"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-5",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 119.5, 5.0, 98.0, 22.0 ],
+									"patching_rect" : [ 119.5, 22.0, 98.0, 22.0 ],
 									"text" : "script npm install"
 								}
 
@@ -1409,7 +1463,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 53.5, 5.0, 64.0, 22.0 ],
+									"patching_rect" : [ 53.5, 22.0, 64.0, 22.0 ],
 									"text" : "script start"
 								}
 
@@ -1421,7 +1475,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 53.5, 29.0, 63.0, 22.0 ],
+									"patching_rect" : [ 53.5, 46.0, 63.0, 22.0 ],
 									"text" : "script stop"
 								}
 
@@ -1434,7 +1488,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 9.0, 118.0, 30.0, 30.0 ]
+									"patching_rect" : [ 9.0, 135.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -1453,7 +1507,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 244.0, 89.0, 400.0, 220.0 ],
+									"patching_rect" : [ 244.0, 106.0, 400.0, 220.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1465,7 +1519,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 9.0, 65.0, 254.0, 22.0 ],
+									"patching_rect" : [ 9.0, 82.0, 254.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"autostart" : 1,
 										"defer" : 0,
@@ -1487,7 +1541,28 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 9.0, 5.0, 30.0, 30.0 ]
+									"patching_rect" : [ 9.0, 22.0, 30.0, 30.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-93",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 376.5, 23.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "1",
+									"textcolor" : [ 0.34902, 0.34902, 0.34902, 1.0 ]
 								}
 
 							}
@@ -1537,7 +1612,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 49.0, 137.0, 79.0, 22.0 ],
+					"patching_rect" : [ 46.0, 161.0, 79.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1602,7 +1677,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
-					"midpoints" : [ 88.5, 313.0, 22.5, 313.0, 22.5, 126.0, 58.5, 126.0 ],
+					"midpoints" : [ 85.5, 337.0, 19.5, 337.0, 19.5, 150.0, 55.5, 150.0 ],
 					"source" : [ "obj-14", 0 ]
 				}
 
@@ -1627,6 +1702,13 @@
 					"destination" : [ "obj-33", 0 ],
 					"order" : 0,
 					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-46", 0 ],
+					"source" : [ "obj-18", 0 ]
 				}
 
 			}
@@ -1677,7 +1759,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-33", 0 ],
-					"midpoints" : [ 323.5, 265.0, 450.5, 265.0, 450.5, 72.0, 301.5, 72.0 ],
+					"midpoints" : [ 320.5, 289.0, 423.5, 289.0, 423.5, 96.0, 298.5, 96.0 ],
 					"source" : [ "obj-41", 0 ]
 				}
 
@@ -1797,10 +1879,6 @@
 			}
 , 			{
 				"name" : "jit.*.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "jit.gl.syphonserver.mxo",
 				"type" : "iLaX"
 			}
  ],

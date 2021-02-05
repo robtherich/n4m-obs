@@ -9,7 +9,8 @@ let connected = false;
 maxApi.addHandler('connect', () => {
 
 	obs.connect({
-		address: 'localhost:4444'
+		address: 'localhost:4444'//, add password here if enabled
+		//password: '$up3rSecretP@ssw0rd'
 	})
 	.then(() => {
 		maxApi.post(`Success! We're connected & authenticated.`);
