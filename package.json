@@ -6,6 +6,6 @@
   "author": "Rob Ramirez",
   "license": "ISC",
   "dependencies": {
-    "obs-websocket-js": "^4.0.2"
+    "obs-websocket-js": "^5.0.6"
   }
 }

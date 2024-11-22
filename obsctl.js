@@ -1,41 +1,26 @@
 const maxApi = require('max-api');
-const OBSWebSocket = require('obs-websocket-js');
+const { default: OBSWebSocket } = require('obs-websocket-js');
+const obs = new OBSWebSocket();
 
 maxApi.post("hello n4m-obs");
 
-const obs = new OBSWebSocket();
 let connected = false;
+
+const port = 4455;
 
 maxApi.addHandler('connect', () => {
 
-	obs.connect({
-		address: 'localhost:4444'//, add password here if enabled
-		//password: '$up3rSecretP@ssw0rd'
-	})
-	.then(() => {
-		maxApi.post(`Success! We're connected & authenticated.`);
-		return obs.send('GetSceneList');
-	})
-	.then(data => {
-		connected = true;
-		
-		maxApi.post(`Current Scene is ${data.currentScene}`);
-		maxApi.post(`${data.scenes.length} Available Scenes`);
-		
-		maxApi.outlet('scenelist');
-		data.scenes.forEach(scene => {
-			maxApi.outlet("scene", scene.name);
-		});
-	})
-	.catch(err => { // Promise convention dicates you have a catch on every chain.
-		maxApi.post(err);
+	obs.connect(`ws://localhost:${port}`, 'password').then((info) => {
+		maxApi.post('Connected and identified', info);
+	}, () => {
+		maxApi.post('Error Connecting, check your port and password (if enabled)');
 	});
 });
 
 maxApi.addHandler('set_scene', (sceneName) => {
 	if(connected) {
-		obs.send('SetCurrentScene', {
-			'scene-name': sceneName
+		obs.call('SetCurrentProgramScene', {
+			'sceneName': sceneName
 		});
 	}
 	else {
@@ -46,28 +31,28 @@ maxApi.addHandler('set_scene', (sceneName) => {
 maxApi.addHandler('set_recording', (state) => {
 	if(connected) {
 		if(state === "start") {
-			obs.send('StartRecording')
+			obs.call('StartRecord')
 			.catch(err => {
 				maxApi.post('set_recording error');
 				maxApi.post(err);
 			});
 		}
 		else if(state === "stop") {
-			obs.send('StopRecording')
+			obs.call('StopRecord')
 			.catch(err => {
 				maxApi.post('set_recording error');
 				maxApi.post(err);
 			});
 		}
 		else if(state === "pause") {
-			obs.send('PauseRecording')
+			obs.call('PauseRecord')
 			.catch(err => {
 				maxApi.post('set_recording error');
 				maxApi.post(err);
 			});
 		}
 		else if(state === "resume") {
-			obs.send('ResumeRecording')
+			obs.call('ResumeRecord')
 			.catch(err => {
 				maxApi.post('set_recording error');
 				maxApi.post(err);
@@ -79,31 +64,57 @@ maxApi.addHandler('set_recording', (state) => {
 	}
 });
 
-// recording filenames not yet implemented as of obs-websocket v 4.8
-// https://github.com/Palakis/obs-websocket/pull/621
-obs.on('RecordingStarted', data => {
-	maxApi.post(`recording started to ${data.recordingFilename}`)
-	maxApi.outlet('start');//, data.recordingFilename);
+function outputSceneList(scenes)
+{
+	maxApi.outlet('scenelist');
+	scenes.forEach(scene => {
+		maxApi.outlet("scene", scene.sceneName);
+	});
+}
+
+// Declare some events to listen for.
+obs.on('ConnectionOpened', () => {
+	maxApi.post('Connection Opened');
 });
 
-obs.on('RecordingStopped', data => {
-	maxApi.post(`recording stopped to ${data.recordingFilename}`)
-	maxApi.outlet('stop');//, data.recordingFilename);
+obs.on('Identified', () => {
+	maxApi.post('Identified, good to go!')
+
+	obs.call('GetSceneList').then((data) => {
+		connected = true;
+		
+		maxApi.post(`Current Scene is ${data.currentScene}`);
+		maxApi.post(`${data.scenes.length} Available Scenes`);
+		maxApi.post(data.scenes);
+		outputSceneList(data.scenes);
+	});
 });
 
-obs.on('RecordingPaused', data => {
-	maxApi.post(`recording paused`)
+obs.on('RecordStateChanged', data => {
+	if(data.outputState == 'OBS_WEBSOCKET_OUTPUT_STARTED') {
+		maxApi.post(`recording started to ${data.outputPath}`)
+		maxApi.outlet('start', data.outputPath);
+	}
+	else if(data.outputState == 'OBS_WEBSOCKET_OUTPUT_STOPPED') {
+		maxApi.post(`recording stopped to ${data.outputPath}`)
+		maxApi.outlet('stop', data.outputPath);
+	}
+	else if(data.outputState == 'OBS_WEBSOCKET_OUTPUT_PAUSED') {
+		maxApi.post('recording paused');
+	}
+	else if(data.outputState == 'OBS_WEBSOCKET_OUTPUT_RESUMED') {
+		maxApi.post('recording resumed');
+	}
 });
 
-obs.on('RecordingResumed', data => {
-	maxApi.post(`recording resumed`)
+obs.on('CurrentProgramSceneChanged', data => {
+	maxApi.post(`New Active Scene ${data.sceneName}`);
 });
 
-obs.on('SwitchScenes', data => {
-	maxApi.post(`New Active Scene ${data.sceneName} with scene items:`);
-	for (i in data.sources) {
-		maxApi.post(`${data.sources[i].name}`);
-	}	
+obs.on('SceneListChanged', data => {
+	maxApi.post('scene list changed');
+	maxApi.post(data.scenes);
+	outputSceneList(data.scenes);
 });
 
 // You must add this handler to avoid uncaught exceptions.
