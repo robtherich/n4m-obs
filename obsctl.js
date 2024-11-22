@@ -9,7 +9,10 @@ let connected = false;
 const port = 4455;
 
 maxApi.addHandler('connect', () => {
-
+	
+	// To use LAN, or if password enabled, change to something like below, replacing with your server IP and password
+	//obs.connect(`ws://192.168.1.17:4455`, 'your_obs_websocket_password').then((info) => {
+	
 	obs.connect(`ws://localhost:${port}`, 'password').then((info) => {
 		maxApi.post('Connected and identified', info);
 	}, () => {
